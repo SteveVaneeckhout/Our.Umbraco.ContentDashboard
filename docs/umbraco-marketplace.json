@@ -1,10 +1,8 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
-  "PackageId": "Our.Umbraco.ContentDashboard",
   "Title": "Content Dashboard for Umbraco",
   "Description": "Three tabs in the Content section: every page you own with its status and age, your pending publish and unpublish dates, and an administrators-only hand-over of everything a departing editor owned. Ownership is Umbraco's own creator field, so it shows up in the standard UI — and transfers deliberately do not stamp the last-edited date.",
-  "Category": "Backoffice Extensions",
-  "AlternateCategory": "Workflow",
+  "Category": "Editor Tools",
   "PackageType": "Package",
   "Tags": [
     "dashboard",
@@ -16,7 +14,6 @@
   ],
   "DocumentationUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/main/docs",
   "IssueTrackerUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/issues",
-  "SourceCodeUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard",
   "LicenseTypes": [
     "Free"
   ],
