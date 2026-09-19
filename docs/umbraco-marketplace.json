@@ -1,0 +1,42 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "PackageId": "Our.Umbraco.ContentDashboard",
+  "Title": "Content Dashboard for Umbraco",
+  "Description": "Three tabs in the Content section: every page you own with its status and age, your pending publish and unpublish dates, and an administrators-only hand-over of everything a departing editor owned. Ownership is Umbraco's own creator field, so it shows up in the standard UI — and transfers deliberately do not stamp the last-edited date.",
+  "Category": "Backoffice Extensions",
+  "AlternateCategory": "Workflow",
+  "PackageType": "Package",
+  "Tags": [
+    "dashboard",
+    "content",
+    "editors",
+    "ownership",
+    "scheduling",
+    "backoffice"
+  ],
+  "DocumentationUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/main/docs",
+  "IssueTrackerUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/issues",
+  "SourceCodeUrl": "https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard",
+  "LicenseTypes": [
+    "Free"
+  ],
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/main/docs/img/my-content.png"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/main/docs/img/scheduled.png"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/main/docs/img/ownership.png"
+    }
+  ],
+  "AuthorDetails": {
+    "Name": "Steve Vaneeckhout",
+    "Url": "https://github.com/SteveVaneeckhout"
+  },
+  "PackagesByAuthor": [
+    "Our.Umbraco.ErrorDashboard",
+    "Our.Umbraco.TrueCopy"
+  ]
+}

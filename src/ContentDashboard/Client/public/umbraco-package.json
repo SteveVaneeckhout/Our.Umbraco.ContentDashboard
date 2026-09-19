@@ -1,0 +1,14 @@
+{
+  "id": "ContentDashboard",
+  "name": "ContentDashboard",
+  "version": "1.1.2",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Content Dashboard Bundle",
+      "alias": "ContentDashboard.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/ContentDashboard/content-dashboard.js"
+    }
+  ]
+}
