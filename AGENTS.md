@@ -5,7 +5,7 @@ once already; none of it is guesswork.
 
 ## What this is
 
-`Our.Umbraco.ContentDashboard`: an Umbraco 18 backoffice package, content ownership and scheduling dashboards. It is published to NuGet and
+`Our.Umbraco.ContentDashboard`: an Umbraco 17 LTS backoffice package, content ownership and scheduling dashboards. It is published to NuGet and
 listed on the Umbraco Marketplace, so the public surface and the README are part of the product.
 
 ```
@@ -33,6 +33,10 @@ from `main`, 17.x from `v17/main`), all under the one NuGet ID.
 - A fix that applies to both lines is **cherry-picked** across. Never merge the branches into each
   other: the port itself would come along with the fix.
 
+**This is the `v17/main` branch.** What differs from `main` is deliberately small: the version pins,
+the OpenAPI composer (Umbraco 17 still uses Swashbuckle - see *OpenAPI* below), the uSync folder
+name, and the docs. The service, the controllers and the client source are the same code.
+
 Inside `src/ContentDashboard/`:
 
 ```
@@ -56,7 +60,7 @@ Backoffice at **https://localhost:44366/umbraco**, admin `hello@example.com`, pa
 `https://testsite1.127.0.0.1.nip.io:44366/`, which is the host the single uSync domain binds to.
 Everything secret in this repository is deliberately public - it is a throwaway local harness.
 
-On first boot the site creates a SQLite database, installs unattended, and imports `src/Cms/uSync/v18`.
+On first boot the site creates a SQLite database, installs unattended, and imports `src/Cms/uSync/v17`.
 
 **A running site holds the package DLL open**, so stop it before `dotnet build`:
 `Get-Process -Name Cms | Stop-Process -Force`.
@@ -145,11 +149,24 @@ per-key fallback.
 
 ## OpenAPI
 
-**`[ProducesResponseType(401)]` - and `(403)` - break the OpenAPI document.** Umbraco's
-`BackOfficeSecurityRequirementsTransformer` adds **both** to every operation, so declaring either
-yourself throws "An item with the same key has already been added. Key: 401" when the document is
-generated. It surfaces as a 500 on `/umbraco/openapi/contentdashboard.json`, with nothing in the stack trace
-pointing at your controller.
+**Umbraco 17 generates OpenAPI with Swashbuckle**; Umbraco 18 replaced it with
+Microsoft.AspNetCore.OpenApi, which is why `ContentDashboardApiComposer` is the one file that really
+differs between the branches. The document is at `/umbraco/swagger/contentdashboard/swagger.json`
+(OpenAPI 3.0), not `/umbraco/openapi/contentdashboard.json`.
+
+- **Operation IDs are named HTTP method + action** (`GetOwners`, `PostTransferAll`) by
+  `ContentDashboardOperationIdHandler`. hey-api derives the client's function names from them, and
+  that scheme reproduces exactly the names `main`'s generator gives (`getOwners`,
+  `postTransferAll`), so `Client/src` needs no changes between the branches. The 17 extension
+  template's `{action}`-only handler would rename every function.
+- **Swashbuckle is used transitively**, through `Umbraco.Cms.Api.Management`. The 17 template
+  references `Swashbuckle.AspNetCore` directly; this package does not, because of the
+  Microsoft-or-Umbraco dependency rule above.
+- Swashbuckle marks request bodies optional, so the regenerated client types `body?:` rather than
+  `body:`. Harmless, but it is why `src/api` differs from `main`'s.
+- `TransferAll`'s explicit `[ProducesResponseType(StatusCodes.Status403Forbidden)]` does **not**
+  break the document on 17 (verified on 17.7.0). On `main` the `401`/`403` duplicate-key trap is real;
+  see that branch's AGENTS.md before copying such an attribute across.
 
 ## What matters in this package
 
@@ -175,7 +192,7 @@ pointing at your controller.
 clone. Two deliberate future schedules keep *Scheduled* non-empty: **Acrobat** publishes 2026-12-01,
 **Alton Towers** unpublishes 2026-11-15.
 
-`src/Cms/uSync/v18` was re-exported from scratch, so it contains no delete tombstones and matches the
+`src/Cms/uSync/v17` was re-exported from scratch, so it contains no delete tombstones and matches the
 database exactly. A plain uSync Export **adds and updates files but never removes stale ones**, which
 is how a domain pointing at a long-deleted node survived in the original export - empty the folder
 first if you want a clean one.
@@ -193,6 +210,11 @@ Install `playwright` (the library only) into a scratch directory with
 ordinary selectors work against the backoffice. Log in at `#username-input` (type `text`, not
 `email`) and `#password-input`, submit `#umb-login-button`, and wait for the form explicitly -
 `isVisible()` does not wait and returns false before the page has rendered.
+
+To call the API from a logged-in Playwright page without an API user, `fetch` from the page with
+the header `Authorization: Bearer [redacted]` - literally that. The backoffice keeps its tokens in
+HttpOnly cookies (`__Host-umbAccessToken`) and sends that placeholder, which the server swaps for
+the cookie; a `fetch` without it gets a 401. Verified on 17.7.0.
 
 For server-side checks, get a token with the `.env` client credentials against
 `POST /umbraco/management/api/v1/security/back-office/token` (`grant_type=client_credentials`).

@@ -5,7 +5,7 @@
 > [README](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard#readme). Paths below are relative to `src/ContentDashboard/` unless stated otherwise.
 
 
-A backoffice package for Umbraco 18 that helps a team of content editors keep track of who is
+A backoffice package for Umbraco 17 that helps a team of content editors keep track of who is
 responsible for what. It adds three tabs to the **Content** section:
 
 | Tab | Who sees it | What it does |
@@ -61,7 +61,7 @@ All routes are under `/umbraco/contentdashboard/api/v1/` and require Content sec
 | `POST transfer` | `{ documentIds, newOwnerId }` |
 | `POST transfer-all` | `{ fromUserId, toUserId }` — **administrators only** |
 
-`ownerId` defaults to the calling user. Browsable at `/umbraco/openapi` (document
+`ownerId` defaults to the calling user. Browsable at `/umbraco/swagger` (document
 `contentdashboard`).
 
 ## Working on the client
@@ -77,7 +77,7 @@ npm run generate-client   # regenerate src/api from the live OpenAPI doc (site m
 Two things to remember:
 
 - Run `npm run generate-client` whenever a controller signature or view model changes. It reads
-  `https://localhost:44366/umbraco/openapi/contentdashboard.json`, so the site has to be running.
+  `https://localhost:44366/umbraco/swagger/contentdashboard/swagger.json`, so the site has to be running.
 - Bump `version` in `Client/public/umbraco-package.json` when you ship a change. Umbraco uses it as
   the cache-busting key (`?umb__rnd=`), so browsers keep serving the old bundle until it changes.
 

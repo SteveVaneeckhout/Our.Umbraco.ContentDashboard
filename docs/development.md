@@ -35,7 +35,7 @@ On first boot the site, unattended:
 1. creates `src/Cms/umbraco/Data/Umbraco.sqlite.db`,
 2. installs Umbraco and the admin user,
 3. runs the package migration,
-4. and imports every document type, data type, template and document from `src/Cms/uSync/v18`
+4. and imports every document type, data type, template and document from `src/Cms/uSync/v17`
    (`uSync:Settings:ImportOnFirstBoot`).
 
 Then open **https://localhost:44366/umbraco** and sign in:
@@ -118,7 +118,7 @@ Four things that will otherwise cost you an afternoon:
   step fails: `Get-Process -Name Cms | Stop-Process -Force`.
 
 `npm run generate-client` reads
-`https://localhost:44366/umbraco/openapi/contentdashboard.json`, so the site has to be running. Run it
+`https://localhost:44366/umbraco/swagger/contentdashboard/swagger.json`, so the site has to be running. Run it
 whenever a controller signature or view model changes.
 
 ## Building and testing

@@ -1,7 +1,7 @@
 {
   "id": "ContentDashboard",
   "name": "ContentDashboard",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "allowTelemetry": true,
   "extensions": [
     {

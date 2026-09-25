@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Our.Umbraco.ContentDashboard?logo=nuget)](https://www.nuget.org/packages/Our.Umbraco.ContentDashboard)
 [![Downloads](https://img.shields.io/nuget/dt/Our.Umbraco.ContentDashboard?logo=nuget)](https://www.nuget.org/packages/Our.Umbraco.ContentDashboard)
-[![Umbraco 18](https://img.shields.io/badge/Umbraco-18-3544B1?logo=umbraco)](https://umbraco.com)
+[![Umbraco 17 LTS](https://img.shields.io/badge/Umbraco-17%20LTS-3544B1?logo=umbraco)](https://umbraco.com)
 [![MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/main/LICENSE)
 
 **Who is responsible for which pages, and what is about to change.**
@@ -23,27 +23,22 @@ unnoticed.*
 
 ## Requirements
 
-- Umbraco **18.x** (this package is deliberately pinned to `[18.2.0,19.0.0)`)
+- Umbraco **17.x LTS** (this package is deliberately pinned to `[17.7.0,18.0.0)`)
 - .NET 10
 
 ## Versions
 
-The package major follows the Umbraco major, so the version tells you which one you need.
+The package major follows the Umbraco major, so the version tells you which one you need. This is
+the **17.x line**, for the Umbraco 17 LTS.
 
 | Umbraco | Package | Branch |
 | --- | --- | --- |
 | 18 | 18.x | [`main`](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/main) |
 | 17 LTS | 17.x | [`v17/main`](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/v17/main) |
 
-1.0.0 was the first Umbraco 18 release, before this scheme; 18.0.0 is the same package.
-
 ## Install
 
-```bash
-dotnet add package Our.Umbraco.ContentDashboard
-```
-
-On Umbraco 17, ask for the 17.x line explicitly - a plain install picks the newest version, which
+Ask for the 17.x line explicitly. A plain `dotnet add package` picks the newest version, which
 targets Umbraco 18:
 
 ```bash
@@ -88,14 +83,14 @@ Every transfer is written to the Umbraco audit log.
 ## Localization
 
 The whole UI is localized and ships with English and Dutch. Adding a language is one TypeScript
-file: see [docs/architecture.md](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/main/docs/architecture.md#translating). Dates and counts follow the
+file: see [docs/architecture.md](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/v17/main/docs/architecture.md#translating). Dates and counts follow the
 *backoffice* language, not the browser's.
 
 ## Documentation
 
-- [Development setup](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/main/docs/development.md) — clone, run, and work on the package
-- [How it works](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/main/docs/architecture.md) — the design decisions behind it
-- [Changelog](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/main/CHANGELOG.md)
+- [Development setup](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/v17/main/docs/development.md) — clone, run, and work on the package
+- [How it works](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/v17/main/docs/architecture.md) — the design decisions behind it
+- [Changelog](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/blob/v17/main/CHANGELOG.md)
 
 ## License
 
