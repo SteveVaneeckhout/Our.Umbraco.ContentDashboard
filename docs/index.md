@@ -18,7 +18,12 @@ deliberately do not stamp the last-edited date.
 dotnet add package Our.Umbraco.ContentDashboard
 ```
 
-Requires Umbraco 18 and .NET 10.
+Requires Umbraco 18 and .NET 10. On the **Umbraco 17 LTS**, install the 17.x line instead - the
+package major follows the Umbraco major:
+
+```bash
+dotnet add package Our.Umbraco.ContentDashboard --version "17.*"
+```
 
 ![Content Dashboard for Umbraco](img/my-content.png)
 

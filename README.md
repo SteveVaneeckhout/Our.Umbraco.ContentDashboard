@@ -26,10 +26,28 @@ unnoticed.*
 - Umbraco **18.x** (this package is deliberately pinned to `[18.2.0,19.0.0)`)
 - .NET 10
 
+## Versions
+
+The package major follows the Umbraco major, so the version tells you which one you need.
+
+| Umbraco | Package | Branch |
+| --- | --- | --- |
+| 18 | 18.x | [`main`](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/main) |
+| 17 LTS | 17.x | [`v17/main`](https://github.com/SteveVaneeckhout/Our.Umbraco.ContentDashboard/tree/v17/main) |
+
+1.0.0 was the first Umbraco 18 release, before this scheme; 18.0.0 is the same package.
+
 ## Install
 
 ```bash
 dotnet add package Our.Umbraco.ContentDashboard
+```
+
+On Umbraco 17, ask for the 17.x line explicitly - a plain install picks the newest version, which
+targets Umbraco 18:
+
+```bash
+dotnet add package Our.Umbraco.ContentDashboard --version "17.*"
 ```
 
 No configuration and nothing to register. Build, run, and open the Content section.
